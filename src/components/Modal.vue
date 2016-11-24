@@ -1,5 +1,4 @@
 <template>
-    <div id="v-modal-shadow" v-show="show" transition="shadow"></div>
     <div id="v-modal-wrap" v-show="show" transition="modal">
         <div id="v-modal-dialog">
             <div id="v-modal-title" v-show="title">{{title}}</div>
@@ -44,7 +43,8 @@
             },
             modalAlert: function(message, title, callback) {
                 this.type = 'alert';
-                if (typeof title === 'undefined') {
+                if (typeof title === 'function' || typeof title === 'undefined') {
+                    callback = title;
                     title = '提示';
                 }
                 this.modal(message, title);
@@ -52,7 +52,8 @@
             },
             modalConfirm: function(message, title, callback) {
                 this.type = 'confirm';
-                if (typeof title === 'undefined') {
+                if (typeof title === 'function' || typeof title === 'undefined') {
+                    callback = title;
                     title = '确认';
                 }
                 this.modal(message, title);
