@@ -1,6 +1,10 @@
 # vue-modal
 基于Vue.js编写的弹窗组件
 
+## 示例
+
+http://182.92.167.237/pages/vue-modal/
+
 ## 用法
 在HTML中引用组件:
 ```html
