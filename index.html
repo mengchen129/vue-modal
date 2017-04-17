@@ -1,51 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>Vue Modal Demo</title>
+    <title>vue-modal</title>
 </head>
 <body>
-<v-modal v-ref:modal>
-    <div slot="slotA">
-        <p>请选择跟进方式: </p>
-        <p>
-            <label><input type="radio" name="followType" v-model="followType" value="1"> 电话跟进</label><br>
-            <label><input type="radio" name="followType" v-model="followType" value="2"> 上门跟进</label>
-        </p>
-    </div>
-    <div slot="slotB">
-        <p>
-            <v-checkbox>
-                <input type="checkbox" v-model="abandonReasons" value="1">信息不真实
-            </v-checkbox>
-            <v-checkbox>
-                <input type="checkbox" v-model="abandonReasons" value="2">没有实体店
-            </v-checkbox>
-            <v-checkbox>
-                <input type="checkbox" v-model="abandonReasons" value="3">恶意注册
-            </v-checkbox>
-        </p>
-    </div>
-    <div slot="slotC">
-        <p>告诉我们为啥要删除它: </p>
-        <p>
-            姓名: <input type="text" v-model="modalParams.name"> <br>
-            原因: <input type="text" v-model="modalParams.reason">
-        </p>
-    </div>
-</v-modal>
-
-<v-list :modal-params="modalParams"></v-list>
-
-<button @click="myAlert()">Default Alert</button>
-<button @click="myAlertNoTitle()">Alert Without Title</button>
-<button @click="myAlertLongText()">Alert With Long Text</button>
-<button @click="myConfirm()">Confirm</button>
-<button @click="myFormModal1()">Modal With Form 1</button>
-<button @click="myFormModal2()">Modal With Form 2</button>
-
-<script src="/dist/entry.bundle.js"></script>
+<div id="app"></div>
+<script src="/dist/build.js"></script>
 </body>
 </html>

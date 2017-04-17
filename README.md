@@ -1,55 +1,66 @@
 # vue-modal
-基于Vue.js编写的弹窗组件
+基于 Vue.js 2.0 编写的弹窗组件 (之前的 1.0 版本已经废弃)
 
 ## 示例
 
-http://182.92.167.237/pages/vue-modal/
+[查看实例](https://mengchen129.github.io/vue-modal/index.html)
 
-## 用法
-在HTML中引用组件:
+## 配置
+在模板中标记组件:
 ```html
-<v-modal v-ref:modal></v-modal>
+<v-modal ref="modal"></v-modal>
 ```
 
-在js中导入组件:
+导入组件相关代码:
 ```javascript
-import Modal from './components/Modal.vue';
-import ModalApi from './components/ModalApi';
-Vue.component(Modal.tagName, Modal);
+import Modal from './Modal.vue';
+import ModalApi from './ModalApi';
+import modalEventBind from './ModalEventBind';
+```
+在 mounted 钩子中绑定元素：
+```javascript
+mounted() {
+    modalEventBind(this.$refs.modal);
+}
+```
 
-new Vue({ 
-    // ...
-    modalRef: 'modal',
+在根实例中引用组件并混合api:
+```javascript
+export default { 
     mixins: [ModalApi],
-    // ...
-});
+    components: {
+        [Modal.name]: Modal
+    }
+}
 ```
 
-在其他vue组件中使用Modal:
+在单页应用中，只需要在根组件做以上配置工作，在其他子组件中只需要混合api即可调用相关API。
 ```javascript
-import ModalApi from './components/ModalApi';
-
-export detault { 
-    // ...
-    mixins: [ModalApi]
-    // ...
+export default {
+    mixins: [ModalApi],
 }
 ```
 
 ## API
-### 弹出alert消息
+#### 弹出 alert 消息
 ```javascript
 this.alert('Hello, Vue!');
 ```
 
-### 弹出confirm消息
+#### 弹出 confirm 消息
 ```javascript
 this.confirm('Confirm delete this item?', 'Confirm', (ok) => {
     if (ok) {
-        // do something
+        // do something if press ok
+    } else {
+        // do something if press cancel
     }
 });
 ```
 
-### 自定义弹出内容
-(待完善)
+#### 弹出 prompt 消息
+```javascript
+this.prompt('输入你的税前工资', '薪资计算器', (salary) => {
+    console.log('你输入的数据为：' + salary);
+}, {inputType: 'number'});
+```

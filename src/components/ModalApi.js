@@ -1,28 +1,28 @@
-module.exports = {
+import EventBus from './EventBus';
+
+export default {
     methods: {
         alert: function(message, title, callback) {
-            this.$dispatch('alert', {message: message, title: title, callback: callback});
+            if (typeof title === 'function') {
+                callback = title;
+                title = undefined;
+            }
+            EventBus.$emit('alert', {message: message, title: title, callback: callback});
         },
         confirm: function(message, title, callback) {
-            this.$dispatch('confirm', {message: message, title: title, callback: callback});
-        }
-    },
-    events: {
-        alert: function(param) {
-            var modalRef = this.$refs[this.$options.modalRef];
-            if (modalRef) {
-                modalRef.modalAlert(param.message, param.title, param.callback);
-            } else {
-                return true;
+            if (typeof title === 'function') {
+                callback = title;
+                title = undefined;
             }
+            EventBus.$emit('confirm', {message: message, title: title, callback: callback});
         },
-        confirm: function(param) {
-            var modalRef = this.$refs[this.$options.modalRef];
-            if (modalRef) {
-                modalRef.modalConfirm(param.message, param.title, param.callback);
-            } else {
-                return true;
+        prompt: function(message, title, callback, options) {
+            if (typeof title === 'function') {
+                options = callback;
+                callback = title;
+                title = undefined;
             }
+            EventBus.$emit('prompt', {message: message, title: title, callback: callback, options: options || {}});
         }
     }
 };
