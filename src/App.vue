@@ -8,6 +8,8 @@
             <button @click="alertNormalWithTitle">Alert + 自定义标题</button>
             <button @click="alertWithoutTitle">Alert 无标题</button>
             <button @click="alertWithLongText">Alert 带长文字</button>
+            <button @click="alertWithSlot1">Alert Slot 内容1</button>
+            <button @click="alertWithSlot2">Alert Slot 内容2</button>
         </p>
         <p>
             <button @click="simpleConfirm">Confirm</button>
@@ -16,7 +18,20 @@
             <button @click="simplePrompt">Prompt</button>
         </p>
 
-        <v-modal ref="modal"></v-modal>
+        <v-modal ref="modal">
+            <div slot="slotA">
+                <h3 style="color: green;">前路坎坷不言弃，Fighting!</h3>
+            </div>
+            <div slot="slotB">
+                <div style="display: flex; align-items: center;">
+                    <img src="http://covteam.u.qiniudn.com/test16.jpg?imageView2/2/format/webp"
+                         style="width: 100px; height: 100px; flex-shrink: 0; margin-right:10px;" alt="">
+                    <div>
+                        <p style="text-align: left;">要相信，梦里能到达的地方，总有一天，脚步也能到达。</p>
+                    </div>
+                </div>
+            </div>
+        </v-modal>
     </div>
 </template>
 
@@ -57,6 +72,12 @@
             alertWithLongText() {
                 this.alert('热烈欢迎产品经理张小明加入芝麻一家亲！张小明毕业于南昌大学，软件工程专业出身，曾经在搜狐等一线互联网' +
                     '公司任职，工作经验非常丰富，是即做过产品的攻城师，又是做过技术的产品！希望大家多多交流，共同学习进步！', '欢迎新同学');
+            },
+            alertWithSlot1() {
+                this.alert({slot: 'slotA'});
+            },
+            alertWithSlot2() {
+                this.confirm({slot: 'slotB'});
             },
             simpleConfirm() {
                 this.confirm('确定删除这项任务么？', (ok) => {
