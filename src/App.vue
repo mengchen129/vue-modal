@@ -24,7 +24,7 @@
             </div>
             <div slot="slotB">
                 <div style="display: flex; align-items: center;">
-                    <img src="http://covteam.u.qiniudn.com/test16.jpg?imageView2/2/format/webp"
+                    <img src="//mengchen129.github.io/vue-modal/cake.jpg"
                          style="width: 100px; height: 100px; flex-shrink: 0; margin-right:10px;" alt="">
                     <div>
                         <p style="text-align: left;">要相信，梦里能到达的地方，总有一天，脚步也能到达。</p>
